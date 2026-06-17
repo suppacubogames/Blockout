@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Blockout.slnx"
+    "dotnet.defaultSolution": "P1_Breakout.slnx"
 }
