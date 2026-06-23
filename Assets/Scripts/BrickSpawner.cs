@@ -11,6 +11,7 @@ public class BrickSpawner : MonoBehaviour
 
     [SerializeField] private List<GameObject> bricks; // List to keep track of spawned bricks
 
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -70,5 +71,10 @@ public class BrickSpawner : MonoBehaviour
                 (j * spacingY) + ((cantidadY - 1) * spacingY / 2)), Quaternion.identity);
             }
         }
+    }
+
+    public List<GameObject> GetBricks()
+    {
+        return bricks; // Return the list of spawned bricks
     }
 }
