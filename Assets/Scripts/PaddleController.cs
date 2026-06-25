@@ -4,7 +4,6 @@ public class PaddleController : MonoBehaviour
 {
     [SerializeField] private float speed; // Speed of the paddle movement
     [SerializeField] private Vector2 inputs; // Vector to store input values for movement
-
     [SerializeField] private float minX, maxX; // Minimum and maximum X positions the paddle can move to
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,6 +21,11 @@ public class PaddleController : MonoBehaviour
 
     void PaddleMovement()
     {
+        if(GameManager.Instance.GetCurrentGameState() != GameManager.GameState.Playing)
+        {
+            return; // Exit the method if the game is not in the Playing state
+        }
+
         float horizontal = Input.GetAxisRaw("Horizontal"); // Get horizontal input (A/D or Left/Right arrow keys)
         Vector3 movement = new Vector3(horizontal, 0f, 0f) * speed * Time.deltaTime; // Calculate movement vector
         transform.Translate(movement); // Move the paddle based on the calculated movement vector
