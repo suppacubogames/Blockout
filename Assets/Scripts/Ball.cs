@@ -26,7 +26,13 @@ public class Ball : MonoBehaviour
 
     void OnEnable()
     {
+        if (rb == null)
+        {
+            rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component attached to the ball
+
+        }
         rb.linearVelocity = new Vector2(5f, -5f); // Set the initial velocity of the ball to move diagonally downwards to the right
 
     }
+
 }

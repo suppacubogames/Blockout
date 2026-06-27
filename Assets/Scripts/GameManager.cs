@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform ballHandler; // Reference to the BallHandler script to access the ball's position.
     [SerializeField] private Transform ball; // Reference to the Ball gameObject.
     [SerializeField] private float cooldown = 3; // Cooldown time in seconds before the player can continue playing after losing a life.
+    [SerializeField] private TMP_Text scoreText, livesText, gameOverText, youWinText;
 
     private int score = 0;
     private int lives = 3;
@@ -37,6 +39,10 @@ public class GameManager : MonoBehaviour
     {
         currentGameState = GameState.Playing; // Set the initial game state to Playing
         bricks = brickSpawner.GetBricks(); // Get the list of bricks from the BrickSpawner script
+        scoreText.text = "Score: " + score.ToString();
+        livesText.text = "Lives: " + lives.ToString();
+
+
     }
 
     void OnEnable()
@@ -54,6 +60,7 @@ public class GameManager : MonoBehaviour
     void LadrilloDestruido()
     {
         score++; // Increment the score when a brick is destroyed
+        scoreText.text = "Score: " + score.ToString();
 
         bool anyBrickAlive = bricks.Any(brick => brick.activeSelf); // Check if any brick in the list is still active (not destroyed)
 
@@ -61,7 +68,7 @@ public class GameManager : MonoBehaviour
         {
             currentGameState = GameState.Win;
             ball.gameObject.SetActive(false); // Deactivate the ball game object to prevent it from being used after the player has won the game
-            Debug.Log("All bricks destroyed! GREAT SAFE! YOU WIN! INTERNATIONAL SUPER STAR SOCCER DELUXE"); // Log a message to the console when all bricks are deactivated (destroyed). The message is a humorous reference to the game "International Superstar Soccer Deluxe" and is meant to celebrate the player's victory in the game.
+            youWinText.gameObject.SetActive(true);
         }
     }
 
@@ -70,12 +77,13 @@ public class GameManager : MonoBehaviour
         currentGameState = GameState.Lose; // Set the game state to Lose when the player loses the game
 
         lives--;
-        Debug.Log("Lives remaining: " + lives); // Log the number of lives remaining to the console
+        livesText.text = "Lives: " + lives.ToString();
 
         if (lives <= 0)
         {
             ball.gameObject.SetActive(false); // Deactivate the ball game object to prevent it from being used after the player has lost all lives
             currentGameState = GameState.Lose;
+            gameOverText.gameObject.SetActive(true);
             Debug.Log("PERDISTE!"); // Log a message to the console indicating that the player has lost the game
         }
         else
