@@ -74,8 +74,6 @@ public class GameManager : MonoBehaviour
 
     private void OnBallTouchingFloor()
     {
-        currentGameState = GameState.Lose; // Set the game state to Lose when the player loses the game
-
         lives--;
         livesText.text = "Lives: " + lives.ToString();
 

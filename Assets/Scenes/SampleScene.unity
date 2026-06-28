@@ -151,9 +151,9 @@ MonoBehaviour:
   brickPrefab: {fileID: 6627485302277633907, guid: 4162c447351aae64a88e72e288a8ce4f, type: 3}
   spacingX: 1.5
   spacingY: 0.5
-  cantidadX: 5
-  cantidadY: 5
+  gridYPos: 4
   bricks: []
+  layoutData: {fileID: 11400000, guid: 94cfaae9f33bd4f50b8a37ce89201511, type: 2}
 --- !u!4 &38687310
 Transform:
   m_ObjectHideFlags: 0
